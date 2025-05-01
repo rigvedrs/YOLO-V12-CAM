@@ -6,7 +6,7 @@ from yolo_cam.activations_and_gradients import ActivationsAndGradients
 from yolo_cam.utils.svd_on_activations import get_2d_projection
 from yolo_cam.utils.image import scale_cam_image
 from yolo_cam.utils.model_targets import ClassifierOutputTarget
-
+from .utils.image import scale_cam_image
 
 class BaseCAM:
     def __init__(self,
