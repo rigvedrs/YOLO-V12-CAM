@@ -81,9 +81,14 @@ class BaseCAM:
             if self.task == 'od':
                 target_categories = outputs[0].boxes.cls
             elif self.task == 'cls':
-                # Change
-                # target_categories = [np.argmax(outputs[0].probs.cpu().numpy())]
-                target_categories = outputs[0].probs.top5
+                try:
+                    target_categories = outputs[0].probs.top5
+                except AttributeError:
+                    try:
+                        cls_list = outputs[0].boxes.cls.cpu().numpy().tolist()
+                        target_categories = cls_list if len(cls_list) > 0 else [0]
+                    except Exception:
+                        target_categories = [0]
             elif self.task == 'seg':
                 target_categories = [category['name'] for category in outputs[0].summary()]
             else:
