@@ -156,7 +156,8 @@ class BaseCAM:
         cam_per_target_layer = np.concatenate(cam_per_target_layer, axis=1)
         cam_per_target_layer = np.maximum(cam_per_target_layer, 0)
         result = np.mean(cam_per_target_layer, axis=1)
-        return scale_cam_image(result)
+        W, H = self.get_target_width_height(self._input_tensor)
+        return scale_cam_image(result, target_size=(W, H))
 
     def forward_augmentation_smoothing(self,
                                        input_tensor: np.array,
