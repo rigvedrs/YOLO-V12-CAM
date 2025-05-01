@@ -193,7 +193,8 @@ class BaseCAM:
                  targets: List[torch.nn.Module] = None,
                  aug_smooth: bool = False,
                  eigen_smooth: bool = False) -> np.ndarray:
-
+        # store for final resize
+        self._input_tensor = input_tensor
         # Smooth the CAM result with test time augmentation
         if aug_smooth is True:
             return self.forward_augmentation_smoothing(
