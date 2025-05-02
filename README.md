@@ -40,7 +40,7 @@ EigenCAM is a technique that involves computing the first principle component of
 
 ### Segmentation model
 
-![cls2.png](images/cls2.png)
+![seg2.png](images/seg2.png)
 
 ## Getting Started
 
