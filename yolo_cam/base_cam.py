@@ -6,7 +6,7 @@ from yolo_cam.activations_and_gradients import ActivationsAndGradients
 from yolo_cam.utils.svd_on_activations import get_2d_projection
 from yolo_cam.utils.image import scale_cam_image
 from yolo_cam.utils.model_targets import ClassifierOutputTarget
-
+from .utils.image import scale_cam_image
 
 class BaseCAM:
     def __init__(self,
@@ -81,9 +81,14 @@ class BaseCAM:
             if self.task == 'od':
                 target_categories = outputs[0].boxes.cls
             elif self.task == 'cls':
-                # Change
-                # target_categories = [np.argmax(outputs[0].probs.cpu().numpy())]
-                target_categories = outputs[0].probs.top5
+                try:
+                    target_categories = outputs[0].probs.top5
+                except AttributeError:
+                    try:
+                        cls_list = outputs[0].boxes.cls.cpu().numpy().tolist()
+                        target_categories = cls_list if len(cls_list) > 0 else [0]
+                    except Exception:
+                        target_categories = [0]
             elif self.task == 'seg':
                 target_categories = [category['name'] for category in outputs[0].summary()]
             else:
@@ -156,7 +161,8 @@ class BaseCAM:
         cam_per_target_layer = np.concatenate(cam_per_target_layer, axis=1)
         cam_per_target_layer = np.maximum(cam_per_target_layer, 0)
         result = np.mean(cam_per_target_layer, axis=1)
-        return scale_cam_image(result)
+        W, H = self.get_target_width_height(self._input_tensor)
+        return scale_cam_image(result, target_size=(W, H))
 
     def forward_augmentation_smoothing(self,
                                        input_tensor: np.array,
@@ -193,7 +199,8 @@ class BaseCAM:
                  targets: List[torch.nn.Module] = None,
                  aug_smooth: bool = False,
                  eigen_smooth: bool = False) -> np.ndarray:
-
+        # store for final resize
+        self._input_tensor = input_tensor
         # Smooth the CAM result with test time augmentation
         if aug_smooth is True:
             return self.forward_augmentation_smoothing(
