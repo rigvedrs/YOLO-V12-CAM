@@ -5,9 +5,6 @@ setup(
     version='0.1',
     packages=find_packages(),
     install_requires=[
-        'torch',
-        'opencv-python',
-        'numpy',
-        'matplotlib'
+        'ttach'
     ],
 )
