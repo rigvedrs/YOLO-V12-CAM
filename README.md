@@ -1,8 +1,8 @@
-# EigenCAM for YOLO V11 Interpretability
+# EigenCAM for YOLO V12 Interpretability
 
 A package for applying EigenCAM and generating heatmaps for the new YOLO V11 model. Simply clone the package and import the modules to get started.
 
-The basic structure is close to [Jacob Gil&#39;s package for AI explainability](https://github.com/jacobgil/pytorch-grad-cam) and modified to be used for the YOLO V11 model.
+The basic structure is close to [Jacob Gil&#39;s package for AI explainability](https://github.com/jacobgil/pytorch-grad-cam) and modified to be used for the YOLO V12 model.
 
 ## Use Cases
 
