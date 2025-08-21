@@ -1,12 +1,12 @@
 # EigenCAM for YOLO V12 Interpretability
 
-A package for applying EigenCAM and generating heatmaps for the new YOLO V11 model. Simply clone the package and import the modules to get started.
+A package for applying EigenCAM and generating heatmaps for the new YOLO V12 model. Simply clone the package and import the modules to get started.
 
 The basic structure is close to [Jacob Gil&#39;s package for AI explainability](https://github.com/jacobgil/pytorch-grad-cam) and modified to be used for the YOLO V12 model.
 
 ## Use Cases
 
-It can be used on YOLO V11 classification, segmentation and object detection models. It can also be used with the older models, where all you have to do is just pass the model and see it work automatically. Example notebook for V8 and V11 provided.
+It can be used on YOLO V12 classification, segmentation and object detection models. It can also be used with the older models, where all you have to do is just pass the model and see it work automatically. Example notebook for V8 and V12 provided.
 
 You can also send pull request for adding more functions to it.
 
@@ -71,7 +71,7 @@ cam = EigenCAM(model, target_layers,task='od')
 
 The default task is 'od' so it is fine even if you don't specify the task then
 
-#### Check out the Jupyter Notebook titled YOLO v11n EigenCAM to understand it better and also handle any issues.
+#### Check out the Jupyter Notebook titled YOLO V12n EigenCAM to understand it better and also handle any issues.
 
 ## ToDo:
 
@@ -93,7 +93,7 @@ The open source community thrives on contributions, making it an incredible spac
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=rigvedrs/YOLO-V11-CAM&type=Date)](https://star-history.com/#rigvedrs/YOLO-V11-CAM&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=rigvedrs/YOLO-V12-CAM&type=Date)](https://star-history.com/#rigvedrs/YOLO-V12-CAM&Date)
 
 
 
